@@ -1,0 +1,26 @@
+.home {
+  background-color: rgba(241, 213, 213, 0.404);
+  margin-top: 3rem;
+  font-family: "Gill Sans MT", "Trebuchet MS", bold;
+}
+.link {
+  text-decoration: none;
+}
+
+.homeimg {
+  width: 27%;
+  margin-top: 1rem;
+}
+.homeTxt {
+  margin-top: 1rem;
+  font-size: 70px;
+  color: rgb(22, 1, 36);
+  background-color: rgba(1, 146, 32, 0.26);
+}
+
+.cj {
+  font-size: 20pt;
+  color: rgb(5, 8, 2);
+  text-align: right;
+  margin-right: 3rem;
+}
