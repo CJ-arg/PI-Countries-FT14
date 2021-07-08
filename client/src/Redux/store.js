@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import countriesR from "./reducers";
 
 const rootReducer = combineReducers({
-  countries: countriesR,
+  countriesS: countriesR,
 });
 
 const composeEnhancers =

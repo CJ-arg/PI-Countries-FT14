@@ -44,6 +44,7 @@ button:hover {
 .Nav .rightSide {
   flex: 50%;
   display: flex;
+  column-gap: 3%;
   justify-content: flex-end;
   align-items: center;
   padding-right: 2rem;

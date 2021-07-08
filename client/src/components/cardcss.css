@@ -1,0 +1,25 @@
+.screen {
+  height: 90%;
+
+  width: 100%;
+  border-radius: 1px;
+  flex: auto;
+  align-items: center;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  background-color: rgba(225, 43, 52);
+  justify-content: space-around;
+}
+.card-title {
+  color: rgba(255, 209, 209);
+  font-family: "Arial Narrow Bold", sans-serif;
+}
+.card-genres {
+  color: rgba(129, 34, 34);
+  font-family: "Arial Narrow Bold", sans-serif;
+  font-size: medium;
+  font-weight: bold;
+}
