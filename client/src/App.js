@@ -1,13 +1,15 @@
+import React from "react";
 import "./App.css";
-import Home from "./components/Home";
+import generateStore from "./Redux/store";
+import { Provider } from "react-redux";
+import Routes from "./Routes/Routes";
 
-function App() {
+const App = () => {
+  const store = generateStore();
   return (
-    <div className="App">
-      {/* <h1>Henry Countries</h1> */}
-      <Home />
-    </div>
+    <Provider store={store}>
+      <Routes />
+    </Provider>
   );
-}
-
+};
 export default App;
