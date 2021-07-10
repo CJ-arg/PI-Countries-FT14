@@ -6,7 +6,7 @@ const CountriesCatalog = () => {
   return (
     <div>
       <Navbarmenu/>
-      <h1 color='white'>Countries</h1>
+      {/* <h1 color='white'>Countries</h1> */}
        <List/>
     </div>
   )

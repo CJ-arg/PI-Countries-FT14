@@ -67,7 +67,7 @@ router.get("/countries", async (req, res) => {
   } else {
     try {
       let country = await Country.findAll({
-        limit: 12,
+        limit: 9,
         // offset: req.query.page,
         // order: [["name", req.query.order]],
         // include: { model: Activity },

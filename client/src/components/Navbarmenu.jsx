@@ -13,8 +13,8 @@ const Navbarmenu = () => {
             <div className='links' id={showLinks ? 'hidden' : ''}>
             <Link to='/'> <img className="portada" src=".\img\camara.png" alt='camara image'/></Link>
                 <a href='/Home'>Home </a>
-            <a href='/About'>About </a>
-            <a href='/Create'>Create</a></div>
+            <a href='/Create'>Create</a>
+            <a href='/About'>About </a></div>
         <button onClick={()=> setShowLinks(!showLinks)}>  Open  </button>
         </div>
          <div className='rightSide'>

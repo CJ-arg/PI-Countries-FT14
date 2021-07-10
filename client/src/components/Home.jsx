@@ -5,6 +5,7 @@ import './homecss.css'
 const Home = () => {
     return (
         <div className='home'>
+            
             <header>
                 
                 <Link to ='App'> <img className= 'homeimg' src=".\images\compass.png" alt='Go to Country App'/> </Link>
