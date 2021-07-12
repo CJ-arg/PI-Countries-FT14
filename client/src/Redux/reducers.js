@@ -4,16 +4,21 @@ import axios from "axios";
 
 const dataFirst = {
   array: [],
+  arrayForm: [],
+  arrayDetail: [],
 };
 
 export const GET_COUNTRIES_OK = "GET_COUNTRIES_OK";
 export const NEXT_COUNTRIES_OK = "NEXT_COUNTRIES_OK";
 export const IMG_COUNTRIES_OK = "IMG_COUNTRIES_OK";
+export const GET_NAME_OK = "GET_NAME_OK";
 
 // reducer
 export default function countriesR(state = dataFirst, action) {
   switch (action.type) {
     case GET_COUNTRIES_OK:
+      return { ...state, array: action.payload };
+    case GET_NAME_OK:
       return { ...state, array: action.payload };
     default:
       return state;
@@ -40,5 +45,16 @@ export const getCountriesAction =
       console.log(error);
     }
   };
-getCountriesAction();
-console.log(dataFirst);
+// getCountriesAction();
+
+export const getCountryName = (name) =>
+  async function (dispatch) {
+    try {
+      var json = await axios.get(
+        "http://localhost:3001/countries?name=" + name
+      );
+      dispatch({ type: GET_NAME_OK, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
