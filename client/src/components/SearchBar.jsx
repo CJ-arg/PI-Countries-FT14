@@ -19,7 +19,7 @@ export default function SearchBar()  {
 
     return (
         <div className='rightSide'>
-            <input type='text' placeholder='...' onChange={(e) => handleImputChange(e)} />
+            <input type='text' placeholder='Country...' onChange={(e) => handleImputChange(e)} />
              <button onClick={(e) => handleOnClick(e)}>Search</button>
         </div>
     )

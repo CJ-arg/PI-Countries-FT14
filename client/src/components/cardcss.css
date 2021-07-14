@@ -21,7 +21,10 @@
   align-items: center;
   margin: 10px;
   border-radius: 3rem;
-  background-color: rgba(19, 48, 87, 0.459);
+  border-color: rgba(0, 0, 0, 0.685);
+  border-style: none dashed solid dashed;
+  border-width: 3px 3px 9px 3px;
+  background-color: rgba(68, 65, 85, 0.507);
   justify-content: space-around;
   /* border:darkgray; */
 }

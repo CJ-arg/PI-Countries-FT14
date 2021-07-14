@@ -21,6 +21,16 @@ const data = async () => {
   console.log("la variable array de la Api", array.data);
   return array.data;
 };
+//get by id
+router.get("/country/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    let count = await Country.findByPk(id);
+    return res.json(count);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 router.get("/countries", async (req, res) => {
   //constante con el query NAME
@@ -32,7 +42,7 @@ router.get("/countries", async (req, res) => {
     //si esta llena la DB no hace nada
     let full = await Country.findAll();
     //si no hay datos los creo
-    if (!full.lenght) await Country.bulkCreate(apiCountries);
+    if (!full.length) await Country.bulkCreate(apiCountries);
   } catch (error) {
     console.log(error);
   }
@@ -53,7 +63,7 @@ router.get("/countries", async (req, res) => {
     try {
       let country = await Country.findAll({
         where: {
-          status: req.query.filter,
+          region: req.query.filter,
         },
         limit: 10,
         offset: req.query.page,
@@ -67,7 +77,7 @@ router.get("/countries", async (req, res) => {
   } else {
     try {
       let country = await Country.findAll({
-        limit: 9,
+        limit: 15,
         // offset: req.query.page,
         // order: [["name", req.query.order]],
         // include: { model: Activity },

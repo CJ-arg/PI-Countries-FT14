@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {getCountriesAction} from '../Redux/reducers'
 import './Listcss.css'
 import Card from './Card'
-
+import Form from './Form'
 
 
 const List = () => {
@@ -17,6 +17,9 @@ const List = () => {
         <div>
             {/* <h1>Countries & Countries</h1> */}
             <button onClick={() => dispatch(getCountriesAction())}>Get Countries</button>
+            <br/>
+            <Form />
+
             <div className="container">
                 {countriesS.map((i, index) => {return <Card name={i.name} flag={i.flag} code={ i.alpha3Code} region={i.region}  />} )}
                 

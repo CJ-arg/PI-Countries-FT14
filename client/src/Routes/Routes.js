@@ -4,6 +4,7 @@ import CountriesCatalog from "../components/CountriesCatalog";
 import List from "../components/List";
 import Home from "../components/Home";
 import Details from "../components/Details";
+
 // import VideoGameDetail from "../components/VideoGameDetail";
 
 const Routes = () => {
