@@ -16,12 +16,11 @@ const Card = (props) => {
 
     return (
         <div className="card">
-           <Link to ='info' className='link-card'><img className="screen" src={props.flag} />
+           <Link to ={`/countries/${props.code}`} className='link-card'><img className="screen" src={props.flag} />
            <h1 className="card-title">{props.name}</h1>
            <p className="card-region">  {props.region}</p> 
            <p className="card-code"> ({props.code})    + </p>  </Link>
-           
-           </div>
+        </div>
     )
 }
 

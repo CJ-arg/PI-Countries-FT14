@@ -4,11 +4,6 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("activity", {
-    id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,11 +13,11 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     time: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     season: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("Summer", "Fall", "Winter", "Spring"),
       allowNull: false,
     },
   });

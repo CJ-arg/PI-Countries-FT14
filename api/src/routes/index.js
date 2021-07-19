@@ -22,11 +22,15 @@ const data = async () => {
   return array.data;
 };
 //get by id
-router.get("/country/:id", async (req, res) => {
+router.get("/countries/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    let count = await Country.findByPk(id);
-    return res.json(count);
+    let detail = await Country.findAll({
+      where: {
+        alpha3Code: id,
+      },
+    });
+    return res.json(detail);
   } catch (error) {
     console.log(error);
   }
@@ -35,6 +39,8 @@ router.get("/country/:id", async (req, res) => {
 router.get("/countries", async (req, res) => {
   //constante con el query NAME
   const name = req.query.name;
+  const filter = req.query.filter;
+  const pop = req.query.pop;
   // guardo en un constante todo lo de la API
   const apiCountries = await data();
 
@@ -59,13 +65,13 @@ router.get("/countries", async (req, res) => {
     } catch (error) {
       console.log(error);
     }
-  } else if (req.query.filter) {
+  } else if (filter) {
     try {
       let country = await Country.findAll({
         where: {
-          region: req.query.filter,
+          region: filter,
         },
-        limit: 10,
+        limit: 6,
         offset: req.query.page,
         order: [["name", req.query.order]],
         include: { model: Activity },
@@ -77,10 +83,10 @@ router.get("/countries", async (req, res) => {
   } else {
     try {
       let country = await Country.findAll({
-        limit: 15,
-        // offset: req.query.page,
-        // order: [["name", req.query.order]],
-        // include: { model: Activity },
+        limit: 6,
+        offset: req.query.page,
+        order: [[req.query.pop, req.query.order]],
+        include: { model: Activity },
       });
       return res.json(country);
     } catch (error) {
@@ -88,8 +94,56 @@ router.get("/countries", async (req, res) => {
     }
   }
 });
+//ruta POST
+// router.post("/activities", async (req, res) => {
+//   const activitie = req.body;
+//   // {name: golf, Dificultad: 3, Duración: 3hs, Temporada: winter}
+//   try {
+//     let newAct = await Activity.findOrCreate({
+//       where: {
+//         name: activitie.name,
+//         level: activitie.level,
+//         time: activitie.time,
+//         season: activitie.season,
+//       },
+//     });
+//     return res.json(newAct);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+router.post("/activities", async (req, res) => {
+  const activitie = req.body;
+  // {name: golf, Dificultad: 3, Duración: 3hs, Temporada: winter}
+  try {
+    let [act, created] = await Activity.findOrCreate({
+      where: {
+        name: activitie.name,
+        level: activitie.level,
+        time: activitie.time,
+        season: activitie.season,
+      },
+    });
+    console.log(created);
+    //seteo las relaciones
+    await act.addCountries(activitie.countrieId);
+    return res.json(act);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
 module.exports = router;
+
+// Ruta de creación de actividad turística: debe contener
+
+// [ ] Un formulario controlado con los siguientes campos
+// Nombre
+// Dificultad
+// Duración
+// Temporada
+// [ ] Posibilidad de seleccionar/agregar varios países en simultaneo
+// [ ] Botón/Opción para crear una nueva actividad turística
