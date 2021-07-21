@@ -15,7 +15,9 @@ const DetailsCard = (props) => {
            <p className="card-D">Capital City:  {props.capital}  </p> 
             <p className="card-D">Continent: {props.region} </p>  
            <p className="card-D"> Code: {props.code}</p>
+           <p className="card-D"> Area: {props.area} km</p>
          <p className="card-D"> Population: {props.population}</p> 
+         <p className="card-D"> Population: {props.population}</p>
              </div>
         </div>
         

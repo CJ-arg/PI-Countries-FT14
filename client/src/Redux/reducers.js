@@ -46,7 +46,7 @@ export const getCountriesAction =
           pop
       );
       // const res = await axios.get("http://localhost:3001/countries");
-      console.log("la variable array de la Api", res);
+      // console.log("la variable array de la Api", res);
       dispatch({ type: GET_COUNTRIES_OK, payload: res.data });
     } catch (error) {
       console.log(error);
@@ -79,6 +79,22 @@ export const getCountryDetails = (id) =>
     try {
       var json = await axios.get("http://localhost:3001/countries/" + id);
       dispatch({ type: GET_DETAILS_OK, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const postAct = (name, level, time, season, code) =>
+  async function (dispatch) {
+    try {
+      var json = await axios.post("http://localhost:3001/activities", {
+        name: name,
+        level: level,
+        time: time,
+        season: season,
+        code: [code],
+      });
+      console.log(json);
     } catch (error) {
       console.log(error);
     }

@@ -18,7 +18,7 @@ const router = Router();
 
 const data = async () => {
   const array = await axios.get("https://restcountries.eu/rest/v2/all");
-  console.log("la variable array de la Api", array.data);
+  // console.log("la variable array de la Api", array.data);
   return array.data;
 };
 //get by id
@@ -30,6 +30,8 @@ router.get("/countries/:id", async (req, res) => {
         alpha3Code: id,
       },
     });
+    console.log(detail);
+
     return res.json(detail);
   } catch (error) {
     console.log(error);
@@ -114,7 +116,7 @@ router.get("/countries", async (req, res) => {
 // });
 router.post("/activities", async (req, res) => {
   const activitie = req.body;
-  // {name: golf, Dificultad: 3, Duración: 3hs, Temporada: winter}
+  // {name: golf, Dificultad: 3, Duración: 3, Temporada: winter}
   try {
     let [act, created] = await Activity.findOrCreate({
       where: {
@@ -126,7 +128,7 @@ router.post("/activities", async (req, res) => {
     });
     console.log(created);
     //seteo las relaciones
-    await act.addCountries(activitie.countrieId);
+    await act.addCountries(activitie.code);
     return res.json(act);
   } catch (error) {
     console.log(error);

@@ -1,8 +1,16 @@
 import React from 'react'
+import { useState } from 'react'
 
-const OptionsSelct = () => {
+
+const OptionsSelct = (props) => {
+//      const [code, setCode] = useState('');
+
+     const changeCode = (event) => {event.preventDefault();
+                setCode(event.target.value)};   
+
+
     return (
-            <select>
+            <select onChange={e => changeCode(e)}>
     <option value="AFG">Afghanistan</option>
     <option value="ALA">Åland Islands</option>
     <option value="ALB">Albania</option>

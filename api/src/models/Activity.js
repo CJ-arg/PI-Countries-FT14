@@ -8,16 +8,16 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    level: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     time: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    level: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     season: {
-      type: DataTypes.ENUM("Summer", "Fall", "Winter", "Spring"),
+      type: DataTypes.ENUM("All", "Summer", "Fall", "Winter", "Spring"),
       allowNull: false,
     },
   });
