@@ -20,11 +20,11 @@
   flex-direction: column;
   align-items: center;
   margin: 10px;
-  border-radius: 3rem;
+  border-radius: 1rem;
   border-color: rgba(0, 0, 0, 0.685);
   border-style: none dashed solid dashed;
   border-width: 3px 3px 9px 3px;
-  background-color: rgba(68, 65, 85, 0.507);
+  background-color: rgba(20, 20, 26, 0.212);
   justify-content: space-around;
   /* border:darkgray; */
 }

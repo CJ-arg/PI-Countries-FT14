@@ -1,0 +1,23 @@
+.cont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 5px;
+
+  border-radius: 7px;
+  background-color: rgba(97, 96, 96, 0.233);
+  font-size: 30px;
+}
+
+.dinamico {
+  height: 48px;
+  padding: 4px 18px;
+  color: white;
+  width: 30%;
+  align-items: center;
+  border-radius: 7px;
+  font-size: 20px;
+  font-weight: bolder;
+  background-color: #021e39;
+}

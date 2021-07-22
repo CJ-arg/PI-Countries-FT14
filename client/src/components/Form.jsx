@@ -11,7 +11,7 @@ const Form = () => {
     const [time, setTime] = useState(1);
     const [level, setLevel] = useState(1);
     const [season, setSeason] = useState('All');
-    const [code, setCode] = useState('');
+    const [code, setCode] = useState([]);
     const [error, setError] = useState('');
     // const [submit, setSubmit] = useState('');
     // const [data, setData] = useState({name:'', time:0, dif:0,season:'',code:[]});
@@ -34,10 +34,10 @@ const Form = () => {
                             const changeSeason = (event) => {event.preventDefault();
                                 setSeason(event.target.value)};         
                                 const changeCode = (event) => {event.preventDefault();
-                                    setCode(event.target.value)};      
+                                    setCode([...code, event.target.value])};      
                                     const handleOnClick = (event) => {event.preventDefault();
                                        dispatch(postAct(name, time, level, season, code))};  
-                                        
+                                        // console.log(code)
                                         
                                         
     return (
@@ -55,7 +55,7 @@ const Form = () => {
                             {!error ? null : <span className="error"> {error}</span>}  <br/>
   
             <form className="formRadio" id="radioB" onChange={handleRadioChange}>  Time:    
-  <input type="radio" id="radioB1" name="time" value="1"/>
+  <input type="radio" id="radioB1" name="time" value="1" checked= 'true' />
   <label >   1h     </label>
   <input type="radio" id="radioB2" name="time" value="2"/>
   <label >   2h     </label>
@@ -69,7 +69,7 @@ const Form = () => {
 </form>
                     <form>
   <label >Dificulty Level:       </label>
-  <input type="number" id="quantity" name="level" min="1" max="10" onChange={handleDifChange}/>
+  <input type="number" id="quantity" name="level"  min="1" max="10"  placeholder="1" onChange={handleDifChange}/>
 </form>
 <div>   <label >   Season:   </label>
             <select onChange={e=> changeSeason(e)}> 
@@ -334,7 +334,8 @@ const Form = () => {
     <option value="ZWE">Zimbabwe</option>
 </select>
         </div> 
-        
+        <ul className="adedCodes"> Selected countries: {code.map(i => `${i} *`) }</ul>
+         
         <button className={(error || name ==="") ? 'danger' : 'boton'} type="submit" value="Create" onClick={(e) => handleOnClick(e)}> Create  </button>
         </div>
         </Fragment>

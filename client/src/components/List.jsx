@@ -1,22 +1,24 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {getCountriesAction} from '../Redux/reducers'
+import {getCountriesAction, getActivities } from '../Redux/reducers'
 import { useState, useEffect } from 'react'
 import './Listcss.css'
 import Card from './Card'
 import Form from './Form'
+import SelectDinamico from './SelectDinamico'
 
 
 const List = () => {
     const dispatch = useDispatch()
     const countriesS = useSelector(state => state.countriesS.array)
-    // console.log(countriesS)
+    const actList = useSelector(state => state.countriesS.arrayAct)
+    // console.log(countriesS, actList)
     const [page, setPage] = useState(0)
     const [order, setOrder] = useState("ASC")
     const [filter, setFiltro] = useState('')   
     const [pop, setPop] = useState("name")         
-    
+    const [act, setAct] = useState("")   
     //orden
     const changeOrder = (e) => {
         e.preventDefault();
@@ -29,6 +31,10 @@ const List = () => {
     const changeRegion = (e) => {
         e.preventDefault();
         setFiltro(e.target.value);
+    }
+    const changeAct = (e) => {
+        e.preventDefault();
+        setAct(e.target.value.trim());
     }
     const prev = e => {
         e.preventDefault();
@@ -50,10 +56,11 @@ const List = () => {
     return  (
         useEffect(() =>
         {
-            dispatch(getCountriesAction(page, order, filter, pop))
-        },[dispatch, page, order, filter, pop]),
+            dispatch(getActivities())
+            dispatch(getCountriesAction(page, order, filter, pop, act))
+        },[dispatch, page, order, filter, pop, act]),
        
-      
+          
 
         <div >
 
@@ -81,11 +88,12 @@ const List = () => {
             <option value="Europe">Europe</option>
             <option value="Oceania">Oceania</option>
                        </select>
-                       <br/>
+                       <select className="dinamico" placeholder='Activitie'  onChange={e=> changeAct(e)}> 
+                       <option value="">Activity</option>
+            {actList.map((i, index) => {return<SelectDinamico name={i.name}/>} )}      
+            </select>
              <button  className="nextprev" onClick={e=> prev(e)}> ◄◄ </button>
-            <button  className="nextprev" onClick={e=> next(e)}> ►►</button></div>
-          
-                   
+            <button  className="nextprev" onClick={e=> next(e)}> ►►</button></div>  
             <br/>
 
             <div className="container">

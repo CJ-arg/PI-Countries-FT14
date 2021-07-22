@@ -56,3 +56,11 @@
 .danger {
   display: none;
 }
+
+.adedCodes {
+  margin-top: -3rem;
+  margin-bottom: 3rem;
+
+  color: white;
+  font-size: 15px;
+}
