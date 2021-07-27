@@ -4,7 +4,7 @@ import axios from "axios";
 
 const dataFirst = {
   array: [],
-  arrayForm: [],
+  arrayAct: [],
   arrayDetail: [],
 };
 
@@ -12,6 +12,7 @@ export const GET_COUNTRIES_OK = "GET_COUNTRIES_OK";
 export const GET_DETAILS_OK = "GET_DETAILS_OK";
 export const GET_NAME_OK = "GET_NAME_OK";
 export const GET_POP_OK = "GET_POP_OK";
+export const GET_ACT_OK = "GET_ACT_OK";
 
 // reducer
 export default function countriesR(state = dataFirst, action) {
@@ -24,6 +25,8 @@ export default function countriesR(state = dataFirst, action) {
       return { ...state, array: action.payload };
     case GET_DETAILS_OK:
       return { ...state, arrayDetail: action.payload };
+    case GET_ACT_OK:
+      return { ...state, arrayAct: action.payload };
 
     default:
       return state;
@@ -32,7 +35,7 @@ export default function countriesR(state = dataFirst, action) {
 
 // acciones
 export const getCountriesAction =
-  (page, order, filter, pop) => async (dispatch, getState) => {
+  (page, order, filter, pop, act) => async (dispatch, getState) => {
     try {
       const res = await axios(
         "http://localhost:3001/countries" +
@@ -43,7 +46,9 @@ export const getCountriesAction =
           "&filter=" +
           filter +
           "&pop=" +
-          pop
+          pop +
+          "&act=" +
+          act
       );
       // const res = await axios.get("http://localhost:3001/countries");
       // console.log("la variable array de la Api", res);
@@ -53,7 +58,16 @@ export const getCountriesAction =
     }
   };
 // getCountriesAction();
-
+export const getActivities = () =>
+  async function (dispatch) {
+    try {
+      var json = await axios.get("http://localhost:3001/activities");
+      console.log("la lista act", json);
+      dispatch({ type: GET_ACT_OK, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 export const getCountryName = (name) =>
   async function (dispatch) {
     try {

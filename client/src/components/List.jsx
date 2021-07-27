@@ -88,7 +88,7 @@ const List = () => {
             <option value="Europe">Europe</option>
             <option value="Oceania">Oceania</option>
                        </select>
-                       <select className="dinamico" placeholder='Activitie'  onChange={e=> changeAct(e)}> 
+                       <select className="selectors" onChange={e=> changeAct(e)}> 
                        <option value="">Activity</option>
             {actList.map((i, index) => {return<SelectDinamico name={i.name}/>} )}      
             </select>

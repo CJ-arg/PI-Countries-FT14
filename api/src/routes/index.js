@@ -29,10 +29,23 @@ router.get("/countries/:id", async (req, res) => {
       where: {
         alpha3Code: id,
       },
+      include: { model: Activity },
     });
     console.log(detail);
 
     return res.json(detail);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/activities", async (req, res) => {
+  try {
+    let list = await Activity.findAll({});
+
+    console.log(list);
+
+    return res.json(list);
   } catch (error) {
     console.log(error);
   }
@@ -45,6 +58,7 @@ router.get("/countries", async (req, res) => {
   const pop = req.query.pop;
   // guardo en un constante todo lo de la API
   const apiCountries = await data();
+  const act = req.query.act;
 
   try {
     //si esta llena la DB no hace nada
@@ -75,8 +89,25 @@ router.get("/countries", async (req, res) => {
         },
         limit: 6,
         offset: req.query.page,
-        order: [["name", req.query.order]],
+        order: [[req.query.pop, req.query.order]],
         include: { model: Activity },
+      });
+      return res.json(country);
+    } catch (error) {
+      console.log(error);
+    }
+  } else if (act) {
+    try {
+      let country = await Country.findAll({
+        limit: 6,
+        offset: req.query.page,
+        order: [[req.query.pop, req.query.order]],
+        include: {
+          model: Activity,
+          where: {
+            name: act,
+          },
+        },
       });
       return res.json(country);
     } catch (error) {
@@ -127,8 +158,11 @@ router.post("/activities", async (req, res) => {
       },
     });
     console.log(created);
+    for (let i = 0; i < activitie.code.length; i++) {
+      await act.addCountries(activitie.code[i]);
+    }
     //seteo las relaciones
-    await act.addCountries(activitie.code);
+    // await act.addCountries(activitie.code);
     return res.json(act);
   } catch (error) {
     console.log(error);

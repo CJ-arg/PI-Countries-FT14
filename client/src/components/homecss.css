@@ -1,5 +1,5 @@
 .home {
-  background-color: rgba(241, 213, 213, 0.404);
+  background-color: rgba(101, 89, 156, 0.404);
   margin-top: 3rem;
   font-family: "Gill Sans MT", "Trebuchet MS", bold;
   text-align: center;
@@ -16,7 +16,7 @@
   margin-top: 1rem;
   font-size: 99px;
   color: rgb(22, 1, 36);
-  background-color: rgb(255, 115, 0);
+  background-color: rgba(255, 125, 19, 0.63);
 }
 
 .cj {

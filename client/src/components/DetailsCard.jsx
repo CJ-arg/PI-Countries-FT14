@@ -25,12 +25,22 @@ const DetailsCard = (props) => {
            <p className="card-D"> Code: {props.code}</p>
            <p className="card-D"> Area: {props.area} km</p>
          <p className="card-D"> Population: {props.population}</p> 
-         {(props.activities.length >0) ?  <><p className="card-D"> Activitie: { props.activities[0].name } </p>
-                         <p className="card-D"> Season: { props.activities[0].season } </p>
-                        <p className="card-D"> Level: { props.activities[0].level } Time:  { props.activities[0].time } </p></> : <p className="card-D">No hay actividades registradas</p>}
+
+         {props.activities.map( act => (
+             <> <p> {act.name} </p>
+             <p> {act.season} </p>
+             <p> {act.time} </p>
+             <p> {act.level} </p>
+             
+             </>
+         ))}
+
+        
+         
             </div>
         </div>
-        
+        // {countriesS.map((i, index) => {return <Card name={i.name} flag={i.flag} code={ i.alpha3Code} region={i.region}  />} )}
+                
     )
 }
 
